@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hitung Besi Sloof dengan Ilustrasi Realistis</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; max-width: 600px; }
+    h2 { text-align: center; }
+    .info, .hasil, .input-section { margin-bottom: 20px; }
+    label { font-weight: bold; }
+    input[type=number] { padding: 6px; width: 100%; box-sizing: border-box; margin-top: 5px; }
+    button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    #hasil { white-space: pre-line; font-weight: bold; margin-top: 10px; }
+    .illustration { text-align: center; margin-bottom: 20px; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+<h2>Hitung Kebutuhan Besi Sloof</h2>
+
+<div class="info">
+  <p><strong>Info standar:</strong></p>
+  <ul>
+    <li>Tiang sloof menggunakan <strong>4 batang besi ulir diameter 8 mm</strong></li>
+    <li>Besi cincin (stirrup) jarak 10 cm, jumlah cincin dihitung otomatis</li>
+  </ul>
+</div>
+
+<div class="illustration">
+  <svg viewBox="0 0 320 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- Sloof kotak -->
+    <rect x="10" y="10" width="300" height="80" fill="#eee" stroke="#aaa" stroke-width="2" rx="10" ry="10"/>
+    <!-- 4 Besi Utama (horizontal sejajar) -->
+    <line x1="20" y1="25" x2="300" y2="25" stroke="red" stroke-width="3"/>
+    <line x1="20" y1="40" x2="300" y2="40" stroke="red" stroke-width="3"/>
+    <line x1="20" y1="60" x2="300" y2="60" stroke="red" stroke-width="3"/>
+    <line x1="20" y1="75" x2="300" y2="75" stroke="red" stroke-width="3"/>
+    <!-- Cincin stirrup (2 contoh cincin melintang vertikal) -->
+    <rect x="40" y="20" width="10" height="60" fill="none" stroke="blue" stroke-width="2"/>
+    <rect x="240" y="20" width="10" height="60" fill="none" stroke="blue" stroke-width="2"/>
+  </svg>
+  <p><em>Merah = Besi utama (horizontal), Biru = Cincin (stirrup)</em></p>
+</div>
+
+<div class="input-section">
+  <label for="panjangSloof">Masukkan panjang sloof (meter):</label><br>
+  <input type="number" id="panjangSloof" step="0.01" min="0"><br><br>
+  <button onclick="hitungSloof()">Hitung</button>
+</div>
+
+<div class="hasil" id="hasil"></div>
+
+<script>
+function hitungSloof() {
+  const panjangSloof = parseFloat(document.getElementById('panjangSloof').value);
+  if (isNaN(panjangSloof) || panjangSloof <= 0) {
+    alert('Masukkan panjang sloof yang valid!');
+    return;
+  }
+
+  const jumlahBesiUtama = 4;
+  const jarakCincin_cm = 10;
+
+  const panjangSloof_cm = panjangSloof * 100;
+  const totalBesiUtama_cm = jumlahBesiUtama * panjangSloof_cm;
+  const jumlahCincin = Math.floor(panjangSloof_cm / jarakCincin_cm) + 1;
+
+  const totalBesiUtama_m = (totalBesiUtama_cm / 100).toFixed(2);
+
+  const hasilText = 
+    `Besi utama dibutuhkan: ${totalBesiUtama_m} meter
+` +
+    `Jumlah cincin: ${jumlahCincin}`;
+
+  document.getElementById('hasil').textContent = hasilText;
+}
+</script>
+
+</body>
+</html>
