@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hitung Besi Sloof</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    label, input, button { font-size: 16px; margin: 5px 0; }
+    #hasil { margin-top: 20px; white-space: pre-line; }
+  </style>
+</head>
+<body>
+
+<h2>Hitung Kebutuhan Besi Sloof</h2>
+
+<label for="panjangSloof">Panjang sloof (meter):</label><br>
+<input type="number" id="panjangSloof" step="0.01" min="0"><br>
+
+<button onclick="hitungSloof()">Hitung</button>
+
+<div id="hasil"></div>
+
+<script>
+function hitungSloof() {
+  const panjangSloof = parseFloat(document.getElementById('panjangSloof').value);
+  if (isNaN(panjangSloof) || panjangSloof <= 0) {
+    alert('Masukkan panjang sloof yang valid!');
+    return;
+  }
+
+  const jumlahBesiUtama = 4;
+  const jarakCincin_cm = 10;
+  const panjangCincin_cm = 40;
+
+  const panjangSloof_cm = panjangSloof * 100;
+
+  const totalBesiUtama_cm = jumlahBesiUtama * panjangSloof_cm;
+  const jumlahCincin = Math.floor(panjangSloof_cm / jarakCincin_cm) + 1;
+  const totalBesiCincin_cm = jumlahCincin * panjangCincin_cm;
+
+  const totalBesiUtama_m = (totalBesiUtama_cm / 100).toFixed(2);
+  const totalBesiCincin_m = (totalBesiCincin_cm / 100).toFixed(2);
+
+  const hasilText = 
+    `Besi utama dibutuhkan: ${totalBesiUtama_m} meter\n` +
+    `Besi cincin dibutuhkan: ${totalBesiCincin_m} meter\n` +
+    `Jumlah cincin: ${jumlahCincin}`;
+
+  document.getElementById('hasil').textContent = hasilText;
+}
+</script>
+
+</body>
+</html>
