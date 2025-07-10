@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perhitungan Hebel</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f7fa;
+      color: #2c3e50;
+      padding: 20px;
+      max-width: 480px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 16px;
+      color: #1a2a45;
+    }
+    .form-section, .result-section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    .reset-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    .reset-btn:hover {
+      background: #c0392b;
+    }
+    .output-line {
+      margin: 8px 0;
+    }
+    .keterangan {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 16px;
+      font-style: italic;
+    }
+    .keterangan::before {
+      content: "Note:\0000a";
+      font-weight: bold;
+      font-style: normal;
+      display: block;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Perhitungan Kebutuhan Hebel</h2>  <div class="form-section">
+    <label>Panjang Dinding (meter)</label>
+    <input type="number" id="panjang" min="0" step="0.01"><label>Tinggi Dinding (meter)</label>
+<input type="number" id="tinggi" min="0" step="0.01">
+
+<label>Tebal Hebel</label>
+<select id="tebal">
+  <option value="0.075">7.5 cm</option>
+  <option value="0.1">10 cm</option>
+</select>
+
+  </div>  <div class="result-section" id="hasil">
+    <div class="output-line">Luas Dinding: <span id="luasDinding">0</span> m²</div>
+    <div class="output-line">Volume Dinding: <span id="volumeDinding">0</span> m³</div>
+    <div class="output-line">Kebutuhan Hebel: <span id="kebutuhanM3">0</span> m³</div>
+    <div class="output-line">Jumlah Hebel: <span id="jumlahHebel">0</span> pcs</div>
+    <div class="output-line">Kebutuhan Lem: <span id="lemKg">0</span> kg / <span id="lemSak">0</span> sak</div><div class="keterangan">
+  - Ukuran hebel standar: 60 x 20 x 7.5 / 10 cm<br>
+  - 1 m³ hebel 7.5 cm = ~111 pcs<br>
+  - 1 m³ hebel 10 cm = ~83 pcs<br>
+  - Estimasi lem rata-rata ± 20 kg per m³ hebel (sumber: Drymix, Mortar Utama)<br>
+  - 1 sak lem = 25 kg
+</div>
+<button class="reset-btn" onclick="resetForm()">Reset</button>
+
+  </div>  <script>
+    const panjang = document.getElementById('panjang');
+    const tinggi = document.getElementById('tinggi');
+    const tebal = document.getElementById('tebal');
+
+    const luasDinding = document.getElementById('luasDinding');
+    const volumeDinding = document.getElementById('volumeDinding');
+    const kebutuhanM3 = document.getElementById('kebutuhanM3');
+    const jumlahHebel = document.getElementById('jumlahHebel');
+    const lemKg = document.getElementById('lemKg');
+    const lemSak = document.getElementById('lemSak');
+
+    function hitung() {
+      const p = parseFloat(panjang.value) || 0;
+      const t = parseFloat(tinggi.value) || 0;
+      const d = parseFloat(tebal.value);
+
+      const luas = p * t;
+      const volume = luas * d;
+      const pcsPerM3 = d === 0.075 ? 111 : 83;
+      const jumlah = Math.round(volume * pcsPerM3);
+      const kgLem = Math.round(volume * 20); // revisi dari 35kg ke 20kg per m³
+      const sak = Math.ceil(kgLem / 25);
+
+      luasDinding.textContent = luas.toFixed(2);
+      volumeDinding.textContent = volume.toFixed(2);
+      kebutuhanM3.textContent = volume.toFixed(2);
+      jumlahHebel.textContent = jumlah;
+      lemKg.textContent = kgLem;
+      lemSak.textContent = sak;
+    }
+
+    function resetForm() {
+      panjang.value = '';
+      tinggi.value = '';
+      tebal.value = '0.075';
+      luasDinding.textContent = '0';
+      volumeDinding.textContent = '0';
+      kebutuhanM3.textContent = '0';
+      jumlahHebel.textContent = '0';
+      lemKg.textContent = '0';
+      lemSak.textContent = '0';
+    }
+
+    panjang.addEventListener('input', hitung);
+    tinggi.addEventListener('input', hitung);
+    tebal.addEventListener('change', hitung);
+  </script></body>
+</html>
