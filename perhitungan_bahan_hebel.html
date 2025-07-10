@@ -1,146 +1,214 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Perhitungan Hebel</title>
+  <title>Perhitungan Bahan Hebel - Bangunku</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #f5f7fa;
-      color: #2c3e50;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f9f9f7;
+      margin: 0;
       padding: 20px;
       max-width: 480px;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
+      color: #2c3e50;
     }
-    h2 {
-      text-align: center;
-      margin-bottom: 16px;
-      color: #1a2a45;
-    }
-    .form-section, .result-section {
-      background: #fff;
-      padding: 20px;
+    h1 {
+      font-weight: 700;
+      font-size: 2.8rem;
       margin-bottom: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      color: #1a2a45;
+      text-transform: uppercase;
+      user-select: none;
+    }
+    p.note {
+      font-style: italic;
+      color: #555;
+      margin-bottom: 20px;
+      user-select: none;
     }
     label {
       display: block;
-      margin-bottom: 6px;
+      margin-top: 12px;
       font-weight: 600;
+      color: #34495e;
     }
-    input, select {
+    input[type="number"] {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 16px;
-      border: 1px solid #ccc;
+      padding: 8px 12px;
+      margin-top: 6px;
       border-radius: 8px;
+      border: 1.5px solid #ccc;
       font-size: 1rem;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
     }
-    .reset-btn {
-      background: #e74c3c;
+    input[type="number"]:focus {
+      border-color: #2980b9;
+      outline: none;
+    }
+    .result {
+      margin-top: 24px;
+      background: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      border-radius: 20px;
+      padding: 20px;
+      user-select: none;
+    }
+    .result h2 {
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+      color: #1a2a45;
+    }
+    .result p {
+      font-size: 1.1rem;
+      margin: 6px 0;
+      color: #34495e;
+    }
+    .reset-button {
+      margin-top: 30px;
+      width: 100%;
+      padding: 14px 0;
+      background-color: #e74c3c;
       color: white;
       border: none;
-      padding: 12px;
-      width: 100%;
-      font-size: 1rem;
-      border-radius: 8px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1.15rem;
       cursor: pointer;
-      margin-top: 12px;
+      transition: background-color 0.25s ease;
+      user-select: none;
     }
-    .reset-btn:hover {
-      background: #c0392b;
+    .reset-button:hover {
+      background-color: #c0392b;
     }
-    .output-line {
-      margin: 8px 0;
-    }
-    .keterangan {
-      font-size: 0.9rem;
+    /* Info tambahan */
+    .info-list {
+      margin-top: 18px;
+      font-size: 0.95rem;
       color: #555;
-      margin-top: 16px;
       font-style: italic;
+      user-select: none;
     }
-    .keterangan::before {
-      content: "Note:\0000a";
-      font-weight: bold;
-      font-style: normal;
-      display: block;
-      margin-bottom: 4px;
+    .info-list li {
+      margin-bottom: 6px;
     }
   </style>
 </head>
 <body>
-  <h2>Perhitungan Kebutuhan Hebel</h2>  <div class="form-section">
-    <label>Panjang Dinding (meter)</label>
-    <input type="number" id="panjang" min="0" step="0.01"><label>Tinggi Dinding (meter)</label>
-<input type="number" id="tinggi" min="0" step="0.01">
 
-<label>Tebal Hebel</label>
-<select id="tebal">
-  <option value="0.075">7.5 cm</option>
-  <option value="0.1">10 cm</option>
-</select>
+  <h1>Perhitungan Bahan Hebel</h1>
 
-  </div>  <div class="result-section" id="hasil">
-    <div class="output-line">Luas Dinding: <span id="luasDinding">0</span> m²</div>
-    <div class="output-line">Volume Dinding: <span id="volumeDinding">0</span> m³</div>
-    <div class="output-line">Kebutuhan Hebel: <span id="kebutuhanM3">0</span> m³</div>
-    <div class="output-line">Jumlah Hebel: <span id="jumlahHebel">0</span> pcs</div>
-    <div class="output-line">Kebutuhan Lem: <span id="lemKg">0</span> kg / <span id="lemSak">0</span> sak</div><div class="keterangan">
-  - Ukuran hebel standar: 60 x 20 x 7.5 / 10 cm<br>
-  - 1 m³ hebel 7.5 cm = ~111 pcs<br>
-  - 1 m³ hebel 10 cm = ~83 pcs<br>
-  - Estimasi lem rata-rata ± 20 kg per m³ hebel (sumber: Drymix, Mortar Utama)<br>
-  - 1 sak lem = 25 kg
-</div>
-<button class="reset-btn" onclick="resetForm()">Reset</button>
+  <p class="note">
+    Note: <br/>
+    Ukuran hebel standar Indonesia: <em>60 cm x 20 cm x 7,5 cm</em> dan <em>60 cm x 20 cm x 10 cm</em>.<br/>
+    1 m³ hebel tebal 7,5 cm ≈ <em>111 pcs</em>.<br/>
+    1 m³ hebel tebal 10 cm ≈ <em>83 pcs</em>.<br/>
+    Konsumsi lem hebel rata-rata ≈ <em>5 kg/m²</em>.<br/>
+    1 sak semen mortar umumnya <em>40 kg</em>.
+  </p>
 
-  </div>  <script>
-    const panjang = document.getElementById('panjang');
-    const tinggi = document.getElementById('tinggi');
-    const tebal = document.getElementById('tebal');
+  <form id="formHebel">
+    <label for="panjang">Panjang dinding (meter):</label>
+    <input type="number" id="panjang" name="panjang" min="0" step="0.01" required placeholder="Masukkan panjang dinding" />
 
-    const luasDinding = document.getElementById('luasDinding');
-    const volumeDinding = document.getElementById('volumeDinding');
-    const kebutuhanM3 = document.getElementById('kebutuhanM3');
-    const jumlahHebel = document.getElementById('jumlahHebel');
-    const lemKg = document.getElementById('lemKg');
-    const lemSak = document.getElementById('lemSak');
+    <label for="tinggi">Tinggi dinding (meter):</label>
+    <input type="number" id="tinggi" name="tinggi" min="0" step="0.01" required placeholder="Masukkan tinggi dinding" />
+
+    <label for="tebal">Pilih ketebalan hebel:</label>
+    <select id="tebal" name="tebal" required>
+      <option value="7.5">7.5 cm</option>
+      <option value="10">10 cm</option>
+    </select>
+  </form>
+
+  <div class="result" id="result" aria-live="polite" aria-atomic="true" style="display:none;">
+    <h2>Hasil Perhitungan</h2>
+    <p id="luasDinding"></p>
+    <p id="kebutuhanHebel"></p>
+    <p id="kebutuhanLem"></p>
+    <p id="kebutuhanSemen"></p>
+  </div>
+
+  <button class="reset-button" id="resetBtn" type="button">Reset Perhitungan</button>
+
+  <script>
+    const panjangInput = document.getElementById('panjang');
+    const tinggiInput = document.getElementById('tinggi');
+    const tebalSelect = document.getElementById('tebal');
+    const resultDiv = document.getElementById('result');
+    const luasDindingP = document.getElementById('luasDinding');
+    const kebutuhanHebelP = document.getElementById('kebutuhanHebel');
+    const kebutuhanLemP = document.getElementById('kebutuhanLem');
+    const kebutuhanSemenP = document.getElementById('kebutuhanSemen');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Konstanta
+    const pcsPerM3 = {
+      '7.5': 111,
+      '10': 83
+    };
+    const konsumsiLemPerM2 = 5; // kg/m2
+    const beratSakSemen = 40; // kg
 
     function hitung() {
-      const p = parseFloat(panjang.value) || 0;
-      const t = parseFloat(tinggi.value) || 0;
-      const d = parseFloat(tebal.value);
+      const panjang = parseFloat(panjangInput.value);
+      const tinggi = parseFloat(tinggiInput.value);
+      const tebal = tebalSelect.value;
 
-      const luas = p * t;
-      const volume = luas * d;
-      const pcsPerM3 = d === 0.075 ? 111 : 83;
-      const jumlah = Math.round(volume * pcsPerM3);
-      const kgLem = Math.round(volume * 20); // revisi dari 35kg ke 20kg per m³
-      const sak = Math.ceil(kgLem / 25);
+      if (isNaN(panjang) || panjang <= 0 || isNaN(tinggi) || tinggi <= 0) {
+        resultDiv.style.display = 'none';
+        return;
+      }
 
-      luasDinding.textContent = luas.toFixed(2);
-      volumeDinding.textContent = volume.toFixed(2);
-      kebutuhanM3.textContent = volume.toFixed(2);
-      jumlahHebel.textContent = jumlah;
-      lemKg.textContent = kgLem;
-      lemSak.textContent = sak;
+      // Luas dinding (m2)
+      const luasDinding = panjang * tinggi;
+
+      // Volume hebel (m3)
+      // tebal dalam cm, jadi konversi ke meter
+      const tebalMeter = parseFloat(tebal) / 100;
+
+      const volumeHebel = luasDinding * tebalMeter;
+
+      // Jumlah pcs hebel
+      const jumlahHebel = volumeHebel * pcsPerM3[tebal];
+
+      // Kebutuhan lem (kg)
+      const kebutuhanLem = luasDinding * konsumsiLemPerM2;
+
+      // Kebutuhan semen mortar (kg)
+      // diasumsikan semen mortar 20% dari berat lem
+      const kebutuhanSemen = kebutuhanLem * 0.2;
+
+      // Sak semen
+      const sakSemen = kebutuhanSemen / beratSakSemen;
+
+      // Tampilkan hasil (2 desimal untuk angka)
+      luasDindingP.textContent = `Luas dinding: ${luasDinding.toFixed(2)} m²`;
+      kebutuhanHebelP.textContent = `Kebutuhan hebel: ${jumlahHebel.toFixed(0)} pcs (volume: ${volumeHebel.toFixed(3)} m³)`;
+      kebutuhanLemP.textContent = `Kebutuhan lem hebel: ${kebutuhanLem.toFixed(2)} kg`;
+      kebutuhanSemenP.textContent = `Kebutuhan semen mortar: ${kebutuhanSemen.toFixed(2)} kg (≈ ${sakSemen.toFixed(2)} sak semen 40 kg)`;
+
+      resultDiv.style.display = 'block';
     }
 
-    function resetForm() {
-      panjang.value = '';
-      tinggi.value = '';
-      tebal.value = '0.075';
-      luasDinding.textContent = '0';
-      volumeDinding.textContent = '0';
-      kebutuhanM3.textContent = '0';
-      jumlahHebel.textContent = '0';
-      lemKg.textContent = '0';
-      lemSak.textContent = '0';
-    }
+    // Event listeners untuk hitung otomatis
+    panjangInput.addEventListener('input', hitung);
+    tinggiInput.addEventListener('input', hitung);
+    tebalSelect.addEventListener('change', hitung);
 
-    panjang.addEventListener('input', hitung);
-    tinggi.addEventListener('input', hitung);
-    tebal.addEventListener('change', hitung);
-  </script></body>
+    // Reset button
+    resetBtn.addEventListener('click', () => {
+      panjangInput.value = '';
+      tinggiInput.value = '';
+      tebalSelect.value = '7.5';
+      resultDiv.style.display = 'none';
+    });
+  </script>
+
+</body>
 </html>
