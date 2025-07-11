@@ -1,9 +1,9 @@
-you<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bangunku - Menu</title>
+  <title>Bangunku - Menu dengan Logo SVG</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -15,39 +15,68 @@ you<!DOCTYPE html>
       margin-left: auto;
       margin-right: auto;
       text-align: center;
+      overflow-x: hidden;
       color: #2c3e50;
     }
     h1 {
       font-weight: 700;
-      font-size: 2.5rem;
-      margin-bottom: 30px;
+      font-size: 3rem;
+      margin-bottom: 40px;
+      letter-spacing: 3px;
       color: #1a2a45;
+      text-transform: uppercase;
+      user-select: none;
+      font-feature-settings: "liga" on, "kern" on;
     }
     .menu-container {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 36px;
       align-items: center;
+      justify-content: center;
+      max-width: 320px;
+      margin: 0 auto;
     }
     .menu-item {
       background-color: #fff;
-      border-radius: 16px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-      width: 200px;
-      padding: 20px 0;
+      border-radius: 24px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      width: 190px;
+      padding: 28px 0 20px;
       cursor: pointer;
+      user-select: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: 0.2s;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
     .menu-item:hover {
-      transform: scale(1.03);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+    .menu-icon {
+      width: 72px;
+      height: 72px;
+      margin-bottom: 14px;
+      fill: #2980b9;
+      user-select: none;
+      transition: fill 0.3s ease;
+    }
+    .menu-item:hover .menu-icon {
+      fill: #1b4f72;
     }
     .menu-text {
-      font-size: 1.2rem;
       font-weight: 500;
+      font-size: 1.35rem;
       color: #34495e;
+      user-select: none;
+      letter-spacing: 0.02em;
+      text-transform: capitalize;
+      font-feature-settings: "liga" on, "kern" on;
+      transition: color 0.3s ease;
+    }
+    .menu-item:hover .menu-text {
+      color: #1b4f72;
     }
     #slideMenu {
       position: fixed;
@@ -69,51 +98,97 @@ you<!DOCTYPE html>
     #slideMenu.show {
       left: 0;
     }
+    #slideMenu h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      user-select: none;
+      font-weight: 700;
+      font-feature-settings: "liga" on, "kern" on;
+    }
     #slideMenu ul {
       list-style: none;
       padding: 0;
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #2980b9;
+      font-feature-settings: "liga" on, "kern" on;
     }
     #slideMenu ul li {
-      padding: 10px;
-      font-size: 1rem;
-      border-bottom: 1px solid #eee;
+      margin-bottom: 16px;
       cursor: pointer;
+      font-weight: 600;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    #slideMenu ul li:hover {
+      color: #1b4f72;
     }
     #btnBack {
-      margin-top: 20px;
-      padding: 10px 0;
+      margin-top: 30px;
+      padding: 12px 0;
       width: 100%;
       background-color: #2980b9;
       border: none;
+      border-radius: 10px;
       color: white;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      border-radius: 8px;
+      user-select: none;
+      transition: background-color 0.25s ease;
+    }
+    #btnBack:hover {
+      background-color: #1b4f72;
     }
   </style>
 </head>
 <body>
 
-<h1>Bangunku</h1>
+  <h1>Bangunku</h1>
 
-<div class="menu-container" id="menuUtama">
-  <div class="menu-item" data-feature="Perhitungan Bahan">
-    <div class="menu-text">Perhitungan Bahan</div>
+  <div class="menu-container" id="menuUtama">
+    <div class="menu-item" data-feature="Perhitungan Bahan" tabindex="0">
+      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" >
+        <rect x="6" y="8" width="40" height="8" rx="1.5" ry="1.5"/>
+        <rect x="6" y="22" width="40" height="8" rx="1.5" ry="1.5"/>
+        <rect x="6" y="36" width="40" height="8" rx="1.5" ry="1.5"/>
+        <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
+      </svg>
+      <div class="menu-text">Perhitungan Bahan</div>
+    </div>
+    <div class="menu-item" data-feature="Perhitungan RAB" tabindex="0">
+      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+        <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
+        <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold" font-family="Arial">$</text>
+        <rect x="36" y="12" width="20" height="40" rx="3" ry="3" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
+        <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
+        <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
+      </svg>
+      <div class="menu-text">Perhitungan RAB</div>
+    </div>
+    <div class="menu-item" data-feature="Rekomendasi Alat" tabindex="0">
+      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+        <rect x="14" y="20" width="36" height="24" rx="4" ry="4" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <rect x="22" y="14" width="20" height="8" rx="2" ry="2" fill="#2980b9"/>
+        <line x1="32" y1="14" x2="32" y2="10" stroke="#2980b9" stroke-width="2" />
+        <line x1="34" y1="14" x2="34" y2="10" stroke="#2980b9" stroke-width="2" />
+      </svg>
+      <div class="menu-text">Rekomendasi Alat</div>
+    </div>
   </div>
-  <div class="menu-item" data-feature="Perhitungan RAB">
-    <div class="menu-text">Perhitungan RAB</div>
-  </div>
-  <div class="menu-item" data-feature="Rekomendasi Alat">
-    <div class="menu-text">Rekomendasi Alat</div>
-  </div>
-</div>
 
-<nav id="slideMenu">
-  <h2 id="slideTitle">Menu</h2>
-  <ul id="slideOptions"></ul>
-  <button id="btnBack">Kembali</button>
-</nav>
+  <nav id="slideMenu" aria-label="Menu fitur">
+    <h2 id="slideTitle">Menu</h2>
+    <ul id="slideOptions"></ul>
+    <button id="btnBack">Kembali</button>
+  </nav>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -126,7 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const fiturList = {
     "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Marmer"],
     "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"],
-    "Rekomendasi Alat": ["Alat Pondasi", "Alat Dinding", "Alat Finishing"]
+    "Rekomendasi Alat": ["Alat untuk Pondasi", "Alat untuk Pemasangan Dinding", "Alat untuk Finishing"]
   };
 
   menuUtama.addEventListener('click', (e) => {
@@ -148,11 +223,11 @@ document.addEventListener('DOMContentLoaded', function () {
           window.location.href = 'perhitungan_bahan_hebel.html';
           return;
         }
-        if (fitur === 'Perhitungan Bahan' && item === 'Bata Merah') {
-          window.location.href = 'perhitungan_bata_merah.html';
+        if (fitur === 'Perhitungan Bahan' && item === 'Keramik') {
+          window.location.href = 'perhitungan_keramik.html';
           return;
         }
-        alert(`Menu '${item}' dari fitur '${fitur}' belum tersedia.`);
+        alert(`Menu '${item}' dari fitur '${fitur}' dipilih. Input data dan fitur belum tersedia.`);
       };
       slideOptions.appendChild(li);
     });
