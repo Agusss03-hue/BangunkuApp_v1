@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bangunku - Menu dengan Logo SVG</title>
+  <title>Bangunku - Menu Fitur</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
   <style>
     body {
@@ -26,7 +26,6 @@
       color: #1a2a45;
       text-transform: uppercase;
       user-select: none;
-      font-feature-settings: "liga" on, "kern" on;
     }
     .menu-container {
       display: flex;
@@ -70,13 +69,7 @@
       font-size: 1.35rem;
       color: #34495e;
       user-select: none;
-      letter-spacing: 0.02em;
       text-transform: capitalize;
-      font-feature-settings: "liga" on, "kern" on;
-      transition: color 0.3s ease;
-    }
-    .menu-item:hover .menu-text {
-      color: #1b4f72;
     }
     #slideMenu {
       position: fixed;
@@ -103,8 +96,6 @@
       margin-bottom: 20px;
       color: #2c3e50;
       user-select: none;
-      font-weight: 700;
-      font-feature-settings: "liga" on, "kern" on;
     }
     #slideMenu ul {
       list-style: none;
@@ -113,7 +104,6 @@
       font-size: 1rem;
       font-weight: 500;
       color: #2980b9;
-      font-feature-settings: "liga" on, "kern" on;
     }
     #slideMenu ul li {
       margin-bottom: 16px;
@@ -151,40 +141,31 @@
   <h1>Bangunku</h1>
 
   <div class="menu-container" id="menuUtama">
-    <div class="menu-item" data-feature="Perhitungan Bahan" tabindex="0">
-      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img" >
-        <rect x="6" y="8" width="40" height="8" rx="1.5" ry="1.5"/>
-        <rect x="6" y="22" width="40" height="8" rx="1.5" ry="1.5"/>
-        <rect x="6" y="36" width="40" height="8" rx="1.5" ry="1.5"/>
+    <div class="menu-item" data-feature="Perhitungan Bahan">
+      <svg class="menu-icon" viewBox="0 0 64 64">
+        <rect x="6" y="8" width="40" height="8" rx="1.5"/>
+        <rect x="6" y="22" width="40" height="8" rx="1.5"/>
+        <rect x="6" y="36" width="40" height="8" rx="1.5"/>
         <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
         <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
       </svg>
       <div class="menu-text">Perhitungan Bahan</div>
     </div>
-    <div class="menu-item" data-feature="Perhitungan RAB" tabindex="0">
-      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
+    <div class="menu-item" data-feature="Perhitungan RAB">
+      <svg class="menu-icon" viewBox="0 0 64 64">
         <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
         <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
-        <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold" font-family="Arial">$</text>
-        <rect x="36" y="12" width="20" height="40" rx="3" ry="3" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
+        <rect x="36" y="12" width="20" height="40" rx="3" fill="none" stroke="#2980b9" stroke-width="2"/>
         <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
         <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
         <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
       </svg>
       <div class="menu-text">Perhitungan RAB</div>
     </div>
-    <div class="menu-item" data-feature="Rekomendasi Alat" tabindex="0">
-      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false" role="img">
-        <rect x="14" y="20" width="36" height="24" rx="4" ry="4" fill="none" stroke="#2980b9" stroke-width="2"/>
-        <rect x="22" y="14" width="20" height="8" rx="2" ry="2" fill="#2980b9"/>
-        <line x1="32" y1="14" x2="32" y2="10" stroke="#2980b9" stroke-width="2" />
-        <line x1="34" y1="14" x2="34" y2="10" stroke="#2980b9" stroke-width="2" />
-      </svg>
-      <div class="menu-text">Rekomendasi Alat</div>
-    </div>
   </div>
 
-  <nav id="slideMenu" aria-label="Menu fitur">
+  <nav id="slideMenu">
     <h2 id="slideTitle">Menu</h2>
     <ul id="slideOptions"></ul>
     <button id="btnBack">Kembali</button>
@@ -199,19 +180,27 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnBack = document.getElementById('btnBack');
 
   const fiturList = {
-    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Marmer"],
-    "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"],
-    "Rekomendasi Alat": ["Alat untuk Pondasi", "Alat untuk Pemasangan Dinding", "Alat untuk Finishing"]
+    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik"],
+    "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
+  };
+
+  const pageMap = {
+    "Hebel": "perhitungan_bahan_hebel.html",
+    "Bata Merah": "perhitungan_bahan_bata_merah.html",
+    "Keramik": "perhitungan_keramik.html",
+    "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
+    "Hitung RAB Detail": "perhitungan_rab_detail.html"
   };
 
   menuUtama.addEventListener('click', (e) => {
     let target = e.target;
-    while(target && !target.classList.contains('menu-item')) {
+    while (target && !target.classList.contains('menu-item')) {
       target = target.parentElement;
     }
-    if(!target) return;
+    if (!target) return;
+
     const fitur = target.getAttribute('data-feature');
-    if(!fitur) return;
+    if (!fitur) return;
 
     slideTitle.textContent = fitur;
     slideOptions.innerHTML = '';
@@ -219,15 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
       const li = document.createElement('li');
       li.textContent = item;
       li.onclick = () => {
-        if (fitur === 'Perhitungan Bahan' && item === 'Hebel') {
-          window.location.href = 'perhitungan_bahan_hebel.html';
-          return;
+        if (pageMap[item]) {
+          window.location.href = pageMap[item];
+        } else {
+          alert(`Halaman untuk '${item}' belum tersedia.`);
         }
-        if (fitur === 'Perhitungan Bahan' && item === 'Keramik') {
-          window.location.href = 'perhitungan_keramik.html';
-          return;
-        }
-        alert(`Menu '${item}' dari fitur '${fitur}' dipilih. Input data dan fitur belum tersedia.`);
       };
       slideOptions.appendChild(li);
     });
