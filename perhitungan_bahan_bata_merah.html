@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -113,27 +112,17 @@
   }
 </style>
 </head>
-<body>
-
-<h1>Perhitungan Bata Merah</h1>
-
-<div class="standar-ukuran">
+<body><h1>Perhitungan Bata Merah</h1><div class="standar-ukuran">
   <b>Ukuran Standar Bata Merah (cm):</b><br>
   Panjang: 20 cm &nbsp;&nbsp;|&nbsp;&nbsp; Tinggi: 5 cm &nbsp;&nbsp;|&nbsp;&nbsp; Tebal: 7 cm (default)
-</div>
+</div><label for="bataPanjang">Panjang Bata (cm)</label> <input type="number" id="bataPanjang" min="5" max="40" step="0.1" value="20" />
 
-<label for="bataPanjang">Panjang Bata (cm)</label>
-<input type="number" id="bataPanjang" min="5" max="40" step="0.1" value="20" />
+<label for="bataTinggi">Tinggi Bata (cm)</label> <input type="number" id="bataTinggi" min="3" max="15" step="0.1" value="5" />
 
-<label for="bataTinggi">Tinggi Bata (cm)</label>
-<input type="number" id="bataTinggi" min="3" max="15" step="0.1" value="5" />
+<label for="bataTebal">Tebal Adukan (cm)</label> <input type="number" id="bataTebal" min="1" max="10" step="0.1" value="7" />
 
-<label for="bataTebal">Tebal Adukan (cm)</label>
-<input type="number" id="bataTebal" min="1" max="10" step="0.1" value="7" />
+<hr/><label>Luas Dinding (meter)</label>
 
-<hr/>
-
-<label>Luas Dinding (meter)</label>
 <div class="flex-row">
   <div>
     <label for="dindingPanjang">Panjang (m)</label>
@@ -143,36 +132,21 @@
     <label for="dindingTinggi">Tinggi (m)</label>
     <input type="number" id="dindingTinggi" min="0.01" step="0.01" placeholder="Tinggi dinding" />
   </div>
-</div>
+</div><label>Lubang Pintu/Jendela (meter)</label>
 
-<label>Lubang Pintu/Jendela (meter)</label>
-<div id="lobangContainer">
-  <div class="lobang-group">
-    <label>Panjang</label>
-    <input type="number" class="lobangPanjang" min="0" step="0.01" placeholder="Panjang lobang" />
-    <label>Tinggi</label>
-    <input type="number" class="lobangTinggi" min="0" step="0.01" placeholder="Tinggi lobang" />
-    <button class="btn-remove" title="Hapus kolom" style="display:none;">×</button>
-  </div>
-</div>
-<button type="button" id="addLobang" class="btn-add">+ Tambah Lobang</button>
-
-<div class="info">
+<div id="lobangContainer"></div>
+<button type="button" id="addLobang" class="btn-add">+ Tambah Lobang</button><div class="info">
   * Note: Perbandingan adukan semen dan pasir adalah 1 : 4 (standar proyek).<br/>
   * Tebal adukan yang umum adalah 1-2 cm.<br/>
   * 1 sak semen = 50 kg.<br/>
   * 1 m³ pasir = 1 kubik pasir (sesuai input)<br/>
-</div>
-
-<button id="btnReset">Reset Semua</button>
+</div><button id="btnReset">Reset Semua</button>
 
 <div class="results" id="results" style="display:none;">
   <p>Kebutuhan Bata: <span id="jumlahBata"></span> pcs</p>
   <p>Kebutuhan Semen: <span id="jumlahSemen"></span> sak</p>
   <p>Kebutuhan Pasir: <span id="jumlahPasir"></span> m³</p>
-</div>
-
-<script>
+</div><script>
   function getTotalLobang() {
     const panjangs = document.querySelectorAll('.lobangPanjang');
     const tinggis = document.querySelectorAll('.lobangTinggi');
@@ -208,7 +182,6 @@
     const luasDinding = panjangDinding * tinggiDinding;
     const luasEfektif = Math.max(0, luasDinding - luasLobang);
 
-    // Luas bata termasuk adukan (panjang+tebal) x (tinggi+tebal) cm, ke m²
     const luasSatuanBataM2 = ((panjangBata + tebalAdukan)/100) * ((tinggiBata + tebalAdukan)/100);
     const jumlahBata = Math.ceil(luasEfektif / luasSatuanBataM2);
 
@@ -218,14 +191,9 @@
     let volumeAdukan = volumeDinding - volumeBata;
     if(volumeAdukan < 0) volumeAdukan = 0;
 
-    // Perbandingan semen : pasir = 1 : 4 (volume)
-    const volumeSemen = volumeAdukan / 5;  // semen 1 bagian dari total 5
-    const volumePasir = volumeAdukan * 4 / 5; // pasir 4 bagian dari total 5
-
-    // Berat semen = volume semen x 1440 kg/m³ (density semen)
+    const volumeSemen = volumeAdukan / 5;
+    const volumePasir = volumeAdukan * 4 / 5;
     const beratSemen = volumeSemen * 1440;
-
-    // Jumlah sak semen (1 sak = 50 kg)
     const jumlahSakSemen = beratSemen / 50;
 
     document.getElementById('jumlahBata').textContent = jumlahBata.toLocaleString();
@@ -240,58 +208,33 @@
     const div = document.createElement('div');
     div.className = 'lobang-group';
 
-    const labelP = document.createElement('label');
-    labelP.textContent = 'Panjang';
-    const inputP = document.createElement('input');
-    inputP.type = 'number';
-    inputP.className = 'lobangPanjang';
-    inputP.min = '0';
-    inputP.step = '0.01';
-    inputP.placeholder = 'Panjang lobang';
-
-    const labelT = document.createElement('label');
-    labelT.textContent = 'Tinggi';
-    const inputT = document.createElement('input');
-    inputT.type = 'number';
-    inputT.className = 'lobangTinggi';
-    inputT.min = '0';
-    inputT.step = '0.01';
-    inputT.placeholder = 'Tinggi lobang';
-
-    const btnRemove = document.createElement('button');
-    btnRemove.className = 'btn-remove';
-    btnRemove.title = 'Hapus kolom';
-    btnRemove.textContent = '×';
-    btnRemove.onclick = () => {
-      container.removeChild(div);
-      updateRemoveButtons();
-      hitung();
-    };
-
-    div.appendChild(labelP);
-    div.appendChild(inputP);
-    div.appendChild(labelT);
-    div.appendChild(inputT);
-    div.appendChild(btnRemove);
+    div.innerHTML = `
+      <label>Panjang</label>
+      <input type="number" class="lobangPanjang" min="0" step="0.01" placeholder="Panjang lobang" />
+      <label>Tinggi</label>
+      <input type="number" class="lobangTinggi" min="0" step="0.01" placeholder="Tinggi lobang" />
+      <button class="btn-remove" title="Hapus kolom">&times;</button>
+    `;
 
     container.appendChild(div);
 
-    updateRemoveButtons();
+    div.querySelector('.btn-remove').addEventListener('click', () => {
+      container.removeChild(div);
+      updateRemoveButtons();
+      hitung();
+    });
 
-    // update hasil otomatis saat input lobang berubah
-    inputP.addEventListener('input', hitung);
-    inputT.addEventListener('input', hitung);
+    div.querySelector('.lobangPanjang').addEventListener('input', hitung);
+    div.querySelector('.lobangTinggi').addEventListener('input', hitung);
+
+    updateRemoveButtons();
   }
 
   function updateRemoveButtons() {
     const lobangGroups = document.querySelectorAll('.lobang-group');
     lobangGroups.forEach((div, idx) => {
       const btn = div.querySelector('.btn-remove');
-      if(lobangGroups.length <= 1) {
-        btn.style.display = 'none';
-      } else {
-        btn.style.display = 'inline';
-      }
+      btn.style.display = lobangGroups.length <= 1 ? 'none' : 'inline';
     });
   }
 
@@ -316,7 +259,5 @@
     document.getElementById('addLobang').addEventListener('click', tambahLobang);
     document.getElementById('btnReset').addEventListener('click', resetSemua);
   });
-</script>
-
-</body>
+</script></body>
 </html>
