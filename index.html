@@ -2,191 +2,176 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu Perhitungan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Aplikasi Perhitungan</title>
   <style>
-    /* Style sesuai file lo, boleh lo tambah sendiri kalau mau */
     body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 20px;
-      background: #f9f9f9;
-      color: #333;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
     }
     #menuUtama {
       display: flex;
-      gap: 20px;
+      flex-wrap: wrap;
+      padding: 20px;
+      justify-content: center;
     }
     .menu-item {
-      cursor: pointer;
-      background: #fff;
-      border: 2px solid #2980b9;
-      border-radius: 8px;
-      padding: 15px;
-      flex: 1;
+      width: 160px;
+      height: 160px;
+      background: white;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: background-color 0.3s;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
     }
     .menu-item:hover {
-      background: #e6f0fc;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-3px);
     }
     .menu-icon {
-      width: 50px;
-      height: 50px;
-      fill: #2980b9;
+      width: 64px;
+      height: 64px;
       margin-bottom: 10px;
     }
     .menu-text {
-      font-weight: 700;
-      font-size: 1rem;
+      font-size: 14px;
+      font-weight: bold;
       text-align: center;
+      color: #333;
     }
     #slideMenu {
-      display: none;
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(3px);
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100%;
+      background: white;
+      box-shadow: -3px 0 10px rgba(0,0,0,0.1);
+      transition: right 0.3s ease;
       padding: 20px;
-      box-sizing: border-box;
-      overflow-y: auto;
-      z-index: 1000;
+      z-index: 999;
     }
     #slideMenu.show {
-      display: block;
+      right: 0;
     }
-    #slideMenu h2 {
-      color: #004085;
-      margin-bottom: 12px;
-      font-weight: 700;
-    }
-    #slideOptions {
-      list-style: none;
-      padding-left: 0;
-      margin-bottom: 20px;
+    #slideTitle {
+      font-size: 16px;
+      margin-bottom: 10px;
     }
     #slideOptions li {
-      background: white;
-      padding: 12px 15px;
-      border-radius: 6px;
-      margin-bottom: 10px;
+      margin: 8px 0;
       cursor: pointer;
-      border: 1.5px solid #2980b9;
-      font-weight: 600;
-      transition: background-color 0.3s;
-    }
-    #slideOptions li:hover {
-      background: #e6f0fc;
+      color: #2980b9;
     }
     #btnBack {
+      margin-top: 20px;
       background: #2980b9;
-      border: none;
       color: white;
-      padding: 10px 15px;
-      border-radius: 6px;
+      border: none;
+      padding: 10px 14px;
+      border-radius: 5px;
       cursor: pointer;
-      font-weight: 700;
-      width: 100%;
-      max-width: 400px;
-      display: block;
-      margin: 0 auto;
-    }
-    #btnBack:hover {
-      background: #1c5a99;
     }
   </style>
 </head>
 <body>
 
-<div id="menuUtama">
-  <div class="menu-item" data-feature="Perhitungan Bahan">
-    <svg class="menu-icon" viewBox="0 0 64 64">
-      <rect x="6" y="8" width="40" height="8" rx="1.5"/>
-      <rect x="6" y="22" width="40" height="8" rx="1.5"/>
-      <rect x="6" y="36" width="40" height="8" rx="1.5"/>
-      <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
-      <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
-    </svg>
-    <div class="menu-text">Perhitungan Bahan</div>
+  <div id="menuUtama">
+    <div class="menu-item" data-feature="Perhitungan Bahan">
+      <svg class="menu-icon" viewBox="0 0 64 64">
+        <rect x="6" y="8" width="40" height="8" rx="1.5"/>
+        <rect x="6" y="22" width="40" height="8" rx="1.5"/>
+        <rect x="6" y="36" width="40" height="8" rx="1.5"/>
+        <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
+      </svg>
+      <div class="menu-text">Perhitungan Bahan</div>
+    </div>
+
+    <div class="menu-item" data-feature="Perhitungan RAB">
+      <svg class="menu-icon" viewBox="0 0 64 64">
+        <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
+        <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
+        <rect x="36" y="12" width="20" height="40" rx="3" fill="none" stroke="#2980b9" stroke-width="2"/>
+        <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
+        <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
+        <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
+      </svg>
+      <div class="menu-text">Perhitungan RAB</div>
+    </div>
   </div>
-  <div class="menu-item" data-feature="Perhitungan RAB">
-    <svg class="menu-icon" viewBox="0 0 64 64">
-      <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
-      <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
-      <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
-      <rect x="36" y="12" width="20" height="40" rx="3" fill="none" stroke="#2980b9" stroke-width="2"/>
-      <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
-      <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
-      <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
-    </svg>
-    <div class="menu-text">Perhitungan RAB</div>
-  </div>
-</div>
 
-<nav id="slideMenu">
-  <h2 id="slideTitle">Menu</h2>
-  <ul id="slideOptions"></ul>
-  <button id="btnBack">Kembali</button>
-</nav>
+  <nav id="slideMenu">
+    <h2 id="slideTitle">Menu</h2>
+    <ul id="slideOptions"></ul>
+    <button id="btnBack">Kembali</button>
+  </nav>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const menuUtama = document.getElementById('menuUtama');
-  const slideMenu = document.getElementById('slideMenu');
-  const slideTitle = document.getElementById('slideTitle');
-  const slideOptions = document.getElementById('slideOptions');
-  const btnBack = document.getElementById('btnBack');
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const menuUtama = document.getElementById('menuUtama');
+      const slideMenu = document.getElementById('slideMenu');
+      const slideTitle = document.getElementById('slideTitle');
+      const slideOptions = document.getElementById('slideOptions');
+      const btnBack = document.getElementById('btnBack');
 
-  const fiturList = {
-    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
-    "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
-  };
-
-  const pageMap = {
-    "Hebel": "perhitungan_bahan_hebel.html",
-    "Bata Merah": "perhitungan_bahan_bata_merah.html",
-    "Keramik": "perhitungan_keramik.html",
-    "Atap": "perhitungan_atap.html",
-    "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
-    "Hitung RAB Detail": "perhitungan_rab_detail.html"
-  };
-
-  menuUtama.addEventListener('click', (e) => {
-    let target = e.target;
-    while (target && !target.classList.contains('menu-item')) {
-      target = target.parentElement;
-    }
-    if (!target) return;
-
-    const fitur = target.getAttribute('data-feature');
-    if (!fitur) return;
-
-    slideTitle.textContent = fitur;
-    slideOptions.innerHTML = '';
-    fiturList[fitur].forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      li.onclick = () => {
-        if (pageMap[item]) {
-          window.location.href = pageMap[item];
-        } else {
-          alert(`Halaman untuk '${item}' belum tersedia.`);
-        }
+      const fiturList = {
+        "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
+        "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
       };
-      slideOptions.appendChild(li);
+
+      const pageMap = {
+        "Hebel": "perhitungan_bahan_hebel.html",
+        "Bata Merah": "perhitungan_bahan_bata_merah.html",
+        "Keramik": "perhitungan_keramik.html",
+        "Atap": "perhitungan_atap.html",
+        "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
+        "Hitung RAB Detail": "perhitungan_rab_detail.html"
+      };
+
+      menuUtama.addEventListener('click', (e) => {
+        let target = e.target;
+        while (target && !target.classList.contains('menu-item')) {
+          target = target.parentElement;
+        }
+        if (!target) return;
+
+        const fitur = target.getAttribute('data-feature');
+        if (!fitur) return;
+
+        slideTitle.textContent = fitur;
+        slideOptions.innerHTML = '';
+        fiturList[fitur].forEach(item => {
+          const li = document.createElement('li');
+          li.textContent = item;
+          li.onclick = () => {
+            if (pageMap[item]) {
+              window.location.href = pageMap[item];
+            } else {
+              alert(`Halaman untuk '${item}' belum tersedia.`);
+            }
+          };
+          slideOptions.appendChild(li);
+        });
+
+        slideMenu.classList.add('show');
+        menuUtama.style.pointerEvents = 'none';
+      });
+
+      btnBack.addEventListener('click', () => {
+        slideMenu.classList.remove('show');
+        menuUtama.style.pointerEvents = 'auto';
+      });
     });
-
-    slideMenu.classList.add('show');
-    menuUtama.style.pointerEvents = 'none';
-  });
-
-  btnBack.addEventListener('click', () => {
-    slideMenu.classList.remove('show');
-    menuUtama.style.pointerEvents = 'auto';
-  });
-});
-</script>
+  </script>
 
 </body>
 </html>
