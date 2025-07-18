@@ -3,117 +3,139 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Menu Kalkulator</title>
+  <title>Menu Perhitungan</title>
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
+    /* Reset dan font */
+    * {
+      box-sizing: border-box;
     }
-
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f9f9f9;
+      color: #222;
+    }
+    /* Container menu utama */
     #menuUtama {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      padding: 30px 20px;
+    }
+    /* Setiap item menu */
+    .menu-item {
+      width: 120px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.1);
+      padding: 20px 10px;
+      cursor: pointer;
+      user-select: none;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 30px 10px;
+      transition: box-shadow 0.3s, transform 0.2s;
     }
-
-    .menu-item {
-      display: flex;
-      align-items: center;
-      background: #fff;
-      padding: 15px 20px;
-      margin: 10px;
-      width: 280px;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      cursor: pointer;
-      transition: transform 0.2s;
+    .menu-item:hover, .menu-item:focus {
+      box-shadow: 0 6px 16px rgb(0 0 0 / 0.15);
+      transform: translateY(-4px);
+      outline: none;
     }
-
-    .menu-item:hover {
-      transform: scale(1.02);
-    }
-
+    /* Icon SVG ukuran besar */
     .menu-icon {
-      width: 40px;
-      height: 40px;
-      margin-right: 15px;
+      width: 64px;
+      height: 64px;
       fill: #2980b9;
+      margin-bottom: 12px;
+      flex-shrink: 0;
     }
-
+    /* Teks di bawah icon */
     .menu-text {
-      font-size: 16px;
-      font-weight: bold;
-      color: #333;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      color: #004085;
+      user-select: none;
     }
-
+    /* Slide menu dari kiri */
     #slideMenu {
       position: fixed;
       top: 0;
-      right: -100%;
-      width: 80%;
-      max-width: 320px;
+      left: 0;
+      width: 280px;
       height: 100%;
-      background: #fff;
-      box-shadow: -2px 0 6px rgba(0,0,0,0.1);
-      padding: 20px;
-      box-sizing: border-box;
-      transition: right 0.3s ease;
-      z-index: 999;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.15);
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      z-index: 1000;
     }
-
     #slideMenu.show {
-      right: 0;
+      transform: translateX(0);
     }
-
     #slideTitle {
-      margin-top: 0;
-      font-size: 18px;
-      font-weight: 600;
-      color: #2980b9;
+      margin: 20px;
+      font-size: 20px;
+      font-weight: 700;
+      color: #004085;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
     }
-
     #slideOptions {
       list-style: none;
-      padding: 0;
-      margin: 20px 0;
+      margin: 0;
+      padding: 0 20px;
+      flex-grow: 1;
+      overflow-y: auto;
     }
-
     #slideOptions li {
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      background: #f2f2f2;
-      border-radius: 5px;
+      padding: 12px 10px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.2s;
+      font-weight: 600;
+      color: #0062cc;
+      user-select: none;
+      transition: background-color 0.2s;
     }
-
-    #slideOptions li:hover {
-      background: #dceefb;
+    #slideOptions li:hover, #slideOptions li:focus {
+      background-color: #d0e3fd;
+      outline: none;
     }
-
     #btnBack {
-      background: #2980b9;
-      color: #fff;
+      margin: 10px 20px 20px;
+      padding: 12px;
+      font-weight: 700;
+      background: #007bff;
+      color: white;
       border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      font-size: 14px;
+      border-radius: 6px;
       cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
     }
-
-    #btnBack:hover {
-      background: #1e6fa1;
+    #btnBack:hover, #btnBack:focus {
+      background: #0056b3;
+      outline: none;
+    }
+    /* Disable text selection on whole page except inputs */
+    body, #menuUtama, #slideMenu {
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    input, select, button {
+      user-select: text;
     }
   </style>
 </head>
 <body>
 
-  <div id="menuUtama">
-    <div class="menu-item" data-feature="Perhitungan Bahan">
-      <svg class="menu-icon" viewBox="0 0 64 64">
+  <div id="menuUtama" role="menu" aria-label="Menu Utama">
+    <div class="menu-item" data-feature="Perhitungan Bahan" tabindex="0" role="menuitem" aria-haspopup="true" aria-controls="slideMenu">
+      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
         <rect x="6" y="8" width="40" height="8" rx="1.5"/>
         <rect x="6" y="22" width="40" height="8" rx="1.5"/>
         <rect x="6" y="36" width="40" height="8" rx="1.5"/>
@@ -122,9 +144,8 @@
       </svg>
       <div class="menu-text">Perhitungan Bahan</div>
     </div>
-
-    <div class="menu-item" data-feature="Perhitungan RAB">
-      <svg class="menu-icon" viewBox="0 0 64 64">
+    <div class="menu-item" data-feature="Perhitungan RAB" tabindex="0" role="menuitem" aria-haspopup="true" aria-controls="slideMenu">
+      <svg class="menu-icon" viewBox="0 0 64 64" aria-hidden="true" focusable="false">
         <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
         <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
         <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
@@ -137,10 +158,10 @@
     </div>
   </div>
 
-  <nav id="slideMenu">
+  <nav id="slideMenu" aria-label="Submenu">
     <h2 id="slideTitle">Menu</h2>
-    <ul id="slideOptions"></ul>
-    <button id="btnBack">Kembali</button>
+    <ul id="slideOptions" role="menu"></ul>
+    <button id="btnBack" aria-label="Kembali ke menu utama">Kembali</button>
   </nav>
 
 <script>
@@ -165,6 +186,37 @@ document.addEventListener('DOMContentLoaded', function () {
     "Hitung RAB Detail": "perhitungan_rab_detail.html"
   };
 
+  // Buka submenu slide
+  function openSlideMenu(fitur) {
+    slideTitle.textContent = fitur;
+    slideOptions.innerHTML = '';
+    fiturList[fitur].forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      li.tabIndex = 0;
+      li.setAttribute('role', 'menuitem');
+      li.style.userSelect = 'none';
+      li.addEventListener('click', () => {
+        if (pageMap[item]) {
+          window.location.href = pageMap[item];
+        } else {
+          alert(`Halaman untuk '${item}' belum tersedia.`);
+        }
+      });
+      li.addEventListener('keydown', e => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          li.click();
+        }
+      });
+      slideOptions.appendChild(li);
+    });
+    slideMenu.classList.add('show');
+    menuUtama.style.pointerEvents = 'none';
+    // Fokus ke item pertama
+    slideOptions.querySelector('li').focus();
+  }
+
   menuUtama.addEventListener('click', (e) => {
     let target = e.target;
     while (target && !target.classList.contains('menu-item')) {
@@ -174,29 +226,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const fitur = target.getAttribute('data-feature');
     if (!fitur) return;
+    openSlideMenu(fitur);
+  });
 
-    slideTitle.textContent = fitur;
-    slideOptions.innerHTML = '';
-    fiturList[fitur].forEach(item => {
-      const li = document.createElement('li');
-      li.textContent = item;
-      li.onclick = () => {
-        if (pageMap[item]) {
-          window.location.href = pageMap[item];
-        } else {
-          alert(`Halaman untuk '${item}' belum tersedia.`);
-        }
-      };
-      slideOptions.appendChild(li);
-    });
-
-    slideMenu.classList.add('show');
-    menuUtama.style.pointerEvents = 'none';
+  menuUtama.addEventListener('keydown', (e) => {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('menu-item')) {
+      e.preventDefault();
+      const fitur = e.target.getAttribute('data-feature');
+      if (!fitur) return;
+      openSlideMenu(fitur);
+    }
   });
 
   btnBack.addEventListener('click', () => {
     slideMenu.classList.remove('show');
     menuUtama.style.pointerEvents = 'auto';
+    menuUtama.querySelector('.menu-item').focus();
+  });
+
+  // Tutup slide dengan ESC
+  document.addEventListener('keydown', e => {
+    if (e.key === "Escape" && slideMenu.classList.contains('show')) {
+      btnBack.click();
+    }
   });
 });
 </script>
