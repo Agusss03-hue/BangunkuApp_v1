@@ -2,82 +2,110 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aplikasi Perhitungan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Menu Kalkulator</title>
   <style>
     body {
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
       margin: 0;
       padding: 0;
-      background: #f2f2f2;
     }
+
     #menuUtama {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 20px;
-      justify-content: center;
-    }
-    .menu-item {
-      width: 160px;
-      height: 160px;
-      background: white;
-      margin: 10px;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      padding: 30px 10px;
+    }
+
+    .menu-item {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 15px 20px;
+      margin: 10px;
+      width: 280px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       cursor: pointer;
-      transition: 0.2s;
+      transition: transform 0.2s;
     }
+
     .menu-item:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transform: translateY(-3px);
+      transform: scale(1.02);
     }
+
     .menu-icon {
-      width: 64px;
-      height: 64px;
-      margin-bottom: 10px;
+      width: 40px;
+      height: 40px;
+      margin-right: 15px;
+      fill: #2980b9;
     }
+
     .menu-text {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
-      text-align: center;
       color: #333;
     }
+
     #slideMenu {
       position: fixed;
       top: 0;
       right: -100%;
-      width: 280px;
+      width: 80%;
+      max-width: 320px;
       height: 100%;
-      background: white;
-      box-shadow: -3px 0 10px rgba(0,0,0,0.1);
-      transition: right 0.3s ease;
+      background: #fff;
+      box-shadow: -2px 0 6px rgba(0,0,0,0.1);
       padding: 20px;
+      box-sizing: border-box;
+      transition: right 0.3s ease;
       z-index: 999;
     }
+
     #slideMenu.show {
       right: 0;
     }
+
     #slideTitle {
-      font-size: 16px;
-      margin-bottom: 10px;
-    }
-    #slideOptions li {
-      margin: 8px 0;
-      cursor: pointer;
+      margin-top: 0;
+      font-size: 18px;
+      font-weight: 600;
       color: #2980b9;
     }
-    #btnBack {
-      margin-top: 20px;
-      background: #2980b9;
-      color: white;
-      border: none;
+
+    #slideOptions {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    #slideOptions li {
       padding: 10px 14px;
+      margin-bottom: 8px;
+      background: #f2f2f2;
       border-radius: 5px;
       cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    #slideOptions li:hover {
+      background: #dceefb;
+    }
+
+    #btnBack {
+      background: #2980b9;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    #btnBack:hover {
+      background: #1e6fa1;
     }
   </style>
 </head>
@@ -115,63 +143,63 @@
     <button id="btnBack">Kembali</button>
   </nav>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const menuUtama = document.getElementById('menuUtama');
-      const slideMenu = document.getElementById('slideMenu');
-      const slideTitle = document.getElementById('slideTitle');
-      const slideOptions = document.getElementById('slideOptions');
-      const btnBack = document.getElementById('btnBack');
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const menuUtama = document.getElementById('menuUtama');
+  const slideMenu = document.getElementById('slideMenu');
+  const slideTitle = document.getElementById('slideTitle');
+  const slideOptions = document.getElementById('slideOptions');
+  const btnBack = document.getElementById('btnBack');
 
-      const fiturList = {
-        "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
-        "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
-      };
+  const fiturList = {
+    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
+    "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
+  };
 
-      const pageMap = {
-        "Hebel": "perhitungan_bahan_hebel.html",
-        "Bata Merah": "perhitungan_bahan_bata_merah.html",
-        "Keramik": "perhitungan_keramik.html",
-        "Atap": "perhitungan_atap.html",
-        "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
-        "Hitung RAB Detail": "perhitungan_rab_detail.html"
-      };
+  const pageMap = {
+    "Hebel": "perhitungan_bahan_hebel.html",
+    "Bata Merah": "perhitungan_bahan_bata_merah.html",
+    "Keramik": "perhitungan_keramik.html",
+    "Atap": "perhitungan_atap.html",
+    "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
+    "Hitung RAB Detail": "perhitungan_rab_detail.html"
+  };
 
-      menuUtama.addEventListener('click', (e) => {
-        let target = e.target;
-        while (target && !target.classList.contains('menu-item')) {
-          target = target.parentElement;
+  menuUtama.addEventListener('click', (e) => {
+    let target = e.target;
+    while (target && !target.classList.contains('menu-item')) {
+      target = target.parentElement;
+    }
+    if (!target) return;
+
+    const fitur = target.getAttribute('data-feature');
+    if (!fitur) return;
+
+    slideTitle.textContent = fitur;
+    slideOptions.innerHTML = '';
+    fiturList[fitur].forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      li.onclick = () => {
+        if (pageMap[item]) {
+          window.location.href = pageMap[item];
+        } else {
+          alert(`Halaman untuk '${item}' belum tersedia.`);
         }
-        if (!target) return;
-
-        const fitur = target.getAttribute('data-feature');
-        if (!fitur) return;
-
-        slideTitle.textContent = fitur;
-        slideOptions.innerHTML = '';
-        fiturList[fitur].forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          li.onclick = () => {
-            if (pageMap[item]) {
-              window.location.href = pageMap[item];
-            } else {
-              alert(`Halaman untuk '${item}' belum tersedia.`);
-            }
-          };
-          slideOptions.appendChild(li);
-        });
-
-        slideMenu.classList.add('show');
-        menuUtama.style.pointerEvents = 'none';
-      });
-
-      btnBack.addEventListener('click', () => {
-        slideMenu.classList.remove('show');
-        menuUtama.style.pointerEvents = 'auto';
-      });
+      };
+      slideOptions.appendChild(li);
     });
-  </script>
+
+    slideMenu.classList.add('show');
+    menuUtama.style.pointerEvents = 'none';
+  });
+
+  btnBack.addEventListener('click', () => {
+    slideMenu.classList.remove('show');
+    menuUtama.style.pointerEvents = 'auto';
+  });
+});
+</script>
 
 </body>
 </html>
