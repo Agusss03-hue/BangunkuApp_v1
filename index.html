@@ -3,173 +3,132 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bangunku - Menu Fitur</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet" />
+  <title>Menu Perhitungan</title>
   <style>
+    /* Style sesuai file lo, boleh lo tambah sendiri kalau mau */
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #f9f9f7;
-      margin: 0;
-      padding: 20px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-      overflow-x: hidden;
-      color: #2c3e50;
+      margin: 20px;
+      background: #f9f9f9;
+      color: #333;
     }
-    h1 {
-      font-weight: 700;
-      font-size: 3rem;
-      margin-bottom: 40px;
-      letter-spacing: 3px;
-      color: #1a2a45;
-      text-transform: uppercase;
-      user-select: none;
-    }
-    .menu-container {
+    #menuUtama {
       display: flex;
-      flex-direction: column;
-      gap: 36px;
-      align-items: center;
-      justify-content: center;
-      max-width: 320px;
-      margin: 0 auto;
+      gap: 20px;
     }
     .menu-item {
-      background-color: #fff;
-      border-radius: 24px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      width: 190px;
-      padding: 28px 0 20px;
       cursor: pointer;
-      user-select: none;
+      background: #fff;
+      border: 2px solid #2980b9;
+      border-radius: 8px;
+      padding: 15px;
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      transition: background-color 0.3s;
     }
     .menu-item:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+      background: #e6f0fc;
     }
     .menu-icon {
-      width: 72px;
-      height: 72px;
-      margin-bottom: 14px;
+      width: 50px;
+      height: 50px;
       fill: #2980b9;
-      user-select: none;
-      transition: fill 0.3s ease;
-    }
-    .menu-item:hover .menu-icon {
-      fill: #1b4f72;
+      margin-bottom: 10px;
     }
     .menu-text {
-      font-weight: 500;
-      font-size: 1.35rem;
-      color: #34495e;
-      user-select: none;
-      text-transform: capitalize;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
     }
     #slideMenu {
+      display: none;
       position: fixed;
-      top: 0;
-      left: -50vw;
-      width: 50vw;
-      max-width: 320px;
-      height: 100vh;
-      background: #fff;
-      box-shadow: 4px 0 12px rgba(0,0,0,0.1);
-      border-top-right-radius: 15px;
-      border-bottom-right-radius: 15px;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(3px);
       padding: 20px;
       box-sizing: border-box;
-      transition: left 0.3s ease;
       overflow-y: auto;
       z-index: 1000;
     }
     #slideMenu.show {
-      left: 0;
+      display: block;
     }
     #slideMenu h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-      color: #2c3e50;
-      user-select: none;
+      color: #004085;
+      margin-bottom: 12px;
+      font-weight: 700;
     }
-    #slideMenu ul {
+    #slideOptions {
       list-style: none;
-      padding: 0;
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #2980b9;
+      padding-left: 0;
+      margin-bottom: 20px;
     }
-    #slideMenu ul li {
-      margin-bottom: 16px;
+    #slideOptions li {
+      background: white;
+      padding: 12px 15px;
+      border-radius: 6px;
+      margin-bottom: 10px;
       cursor: pointer;
+      border: 1.5px solid #2980b9;
       font-weight: 600;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 8px;
-      user-select: none;
-      transition: color 0.2s ease;
+      transition: background-color 0.3s;
     }
-    #slideMenu ul li:hover {
-      color: #1b4f72;
+    #slideOptions li:hover {
+      background: #e6f0fc;
     }
     #btnBack {
-      margin-top: 30px;
-      padding: 12px 0;
-      width: 100%;
-      background-color: #2980b9;
+      background: #2980b9;
       border: none;
-      border-radius: 10px;
       color: white;
-      font-weight: 700;
-      font-size: 1.1rem;
+      padding: 10px 15px;
+      border-radius: 6px;
       cursor: pointer;
-      user-select: none;
-      transition: background-color 0.25s ease;
+      font-weight: 700;
+      width: 100%;
+      max-width: 400px;
+      display: block;
+      margin: 0 auto;
     }
     #btnBack:hover {
-      background-color: #1b4f72;
+      background: #1c5a99;
     }
   </style>
 </head>
 <body>
 
-  <h1>Bangunku</h1>
-
-  <div class="menu-container" id="menuUtama">
-    <div class="menu-item" data-feature="Perhitungan Bahan">
-      <svg class="menu-icon" viewBox="0 0 64 64">
-        <rect x="6" y="8" width="40" height="8" rx="1.5"/>
-        <rect x="6" y="22" width="40" height="8" rx="1.5"/>
-        <rect x="6" y="36" width="40" height="8" rx="1.5"/>
-        <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
-        <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
-      </svg>
-      <div class="menu-text">Perhitungan Bahan</div>
-    </div>
-    <div class="menu-item" data-feature="Perhitungan RAB">
-      <svg class="menu-icon" viewBox="0 0 64 64">
-        <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
-        <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
-        <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
-        <rect x="36" y="12" width="20" height="40" rx="3" fill="none" stroke="#2980b9" stroke-width="2"/>
-        <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
-        <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
-        <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
-      </svg>
-      <div class="menu-text">Perhitungan RAB</div>
-    </div>
+<div id="menuUtama">
+  <div class="menu-item" data-feature="Perhitungan Bahan">
+    <svg class="menu-icon" viewBox="0 0 64 64">
+      <rect x="6" y="8" width="40" height="8" rx="1.5"/>
+      <rect x="6" y="22" width="40" height="8" rx="1.5"/>
+      <rect x="6" y="36" width="40" height="8" rx="1.5"/>
+      <path d="M48 8 L54 8 L54 44 L48 44 Z" fill="none" stroke="#2980b9" stroke-width="2"/>
+      <path d="M51 8 L51 44" stroke="#2980b9" stroke-width="1" stroke-dasharray="2 4"/>
+    </svg>
+    <div class="menu-text">Perhitungan Bahan</div>
   </div>
+  <div class="menu-item" data-feature="Perhitungan RAB">
+    <svg class="menu-icon" viewBox="0 0 64 64">
+      <circle cx="26" cy="32" r="18" fill="#2980b9" opacity="0.2" />
+      <circle cx="26" cy="32" r="14" fill="none" stroke="#2980b9" stroke-width="2"/>
+      <text x="26" y="38" text-anchor="middle" font-size="18" fill="#2980b9" font-weight="bold">$</text>
+      <rect x="36" y="12" width="20" height="40" rx="3" fill="none" stroke="#2980b9" stroke-width="2"/>
+      <line x1="42" y1="18" x2="54" y2="18" stroke="#2980b9" stroke-width="1.5"/>
+      <line x1="42" y1="26" x2="54" y2="26" stroke="#2980b9" stroke-width="1.5"/>
+      <line x1="42" y1="34" x2="54" y2="34" stroke="#2980b9" stroke-width="1.5"/>
+    </svg>
+    <div class="menu-text">Perhitungan RAB</div>
+  </div>
+</div>
 
-  <nav id="slideMenu">
-    <h2 id="slideTitle">Menu</h2>
-    <ul id="slideOptions"></ul>
-    <button id="btnBack">Kembali</button>
-  </nav>
+<nav id="slideMenu">
+  <h2 id="slideTitle">Menu</h2>
+  <ul id="slideOptions"></ul>
+  <button id="btnBack">Kembali</button>
+</nav>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -180,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const btnBack = document.getElementById('btnBack');
 
   const fiturList = {
-    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik"],
+    "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
     "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
   };
 
@@ -188,6 +147,7 @@ document.addEventListener('DOMContentLoaded', function () {
     "Hebel": "perhitungan_bahan_hebel.html",
     "Bata Merah": "perhitungan_bahan_bata_merah.html",
     "Keramik": "perhitungan_keramik.html",
+    "Atap": "perhitungan_atap.html",
     "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
     "Hitung RAB Detail": "perhitungan_rab_detail.html"
   };
