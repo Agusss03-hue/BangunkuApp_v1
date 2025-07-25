@@ -1,128 +1,139 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Perhitungan Bata Merah - Bangunku</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    max-width: 480px;
-    margin: 20px auto;
-    padding: 15px;
-    background: #f7f9fb;
-    color: #333;
-  }
-  h1 {
-    text-align: center;
-    font-weight: 700;
-    color: #1a2a45;
-    margin-bottom: 25px;
-  }
-  label {
-    display: block;
-    margin: 12px 0 6px;
-    font-weight: 600;
-  }
-  input[type="number"] {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 1rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-  .info {
-    font-style: italic;
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 18px;
-  }
-  .flex-row {
-    display: flex;
-    gap: 10px;
-    flex-wrap: nowrap;
-    align-items: center;
-  }
-  .flex-row > div {
-    flex: 1;
-  }
-  .results {
-    margin-top: 25px;
-    background: white;
-    border-radius: 12px;
-    padding: 15px 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-    font-weight: 600;
-    font-size: 1.1rem;
-  }
-  .results span {
-    color: #2980b9;
-  }
-  .lobang-group {
-    margin-bottom: 12px;
-    position: relative;
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  .lobang-group input {
-    flex: 1;
-    padding: 8px 10px;
-    font-size: 1rem;
-  }
-  .lobang-group label {
-    flex: 0 0 60px;
-    font-weight: 600;
-  }
-  .btn-remove {
-    background: transparent;
-    border: none;
-    color: #e74c3c;
-    font-weight: 700;
-    font-size: 1.4rem;
-    cursor: pointer;
-    padding: 0 6px;
-    line-height: 1;
-    user-select: none;
-    transition: color 0.2s ease;
-  }
-  .btn-remove:hover {
-    color: #c0392b;
-  }
-  .btn-add {
-    background-color: #27ae60;
-    font-weight: 700;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 6px;
-    cursor: pointer;
-    margin-bottom: 18px;
-  }
-  .btn-add:hover {
-    background-color: #1e8449;
-  }
-  .standar-ukuran {
-    font-size: 0.9rem;
-    margin-bottom: 18px;
-    background: #dceefb;
-    padding: 10px;
-    border-radius: 8px;
-    color: #1a2a45;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Perhitungan Bata Merah - Bangunku</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 480px;
+      margin: 20px auto;
+      padding: 15px;
+      background: #f7f9fb;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      color: #1a2a45;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: 600;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .info {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 18px;
+    }
+    .flex-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+    .flex-row > div {
+      flex: 1;
+    }
+    .results {
+      margin-top: 25px;
+      background: white;
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .results span {
+      color: #2980b9;
+    }
+    .lobang-group {
+      margin-bottom: 12px;
+      position: relative;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .lobang-group input {
+      flex: 1;
+      padding: 8px 10px;
+      font-size: 1rem;
+    }
+    .lobang-group label {
+      flex: 0 0 60px;
+      font-weight: 600;
+    }
+    .btn-remove {
+      background: transparent;
+      border: none;
+      color: #e74c3c;
+      font-weight: 700;
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0 6px;
+      line-height: 1;
+      user-select: none;
+      transition: color 0.2s ease;
+    }
+    .btn-remove:hover {
+      color: #c0392b;
+    }
+    .btn-add {
+      background-color: #27ae60;
+      font-weight: 700;
+      color: white;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 18px;
+    }
+    .btn-add:hover {
+      background-color: #1e8449;
+    }
+    .standar-ukuran {
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      background: #dceefb;
+      padding: 10px;
+      border-radius: 8px;
+      color: #1a2a45;
+    }
+  </style>
 </head>
-<body><h1>Perhitungan Bata Merah</h1><div class="standar-ukuran">
+<body>
+
+<h1>Perhitungan Bata Merah</h1>
+
+<div class="standar-ukuran">
   <b>Ukuran Standar Bata Merah (cm):</b><br>
   Panjang: 20 cm &nbsp;&nbsp;|&nbsp;&nbsp; Tinggi: 5 cm &nbsp;&nbsp;|&nbsp;&nbsp; Tebal: 7 cm (default)
-</div><label for="bataPanjang">Panjang Bata (cm)</label> <input type="number" id="bataPanjang" min="5" max="40" step="0.1" value="20" />
+</div>
 
-<label for="bataTinggi">Tinggi Bata (cm)</label> <input type="number" id="bataTinggi" min="3" max="15" step="0.1" value="5" />
+<label for="bataPanjang">Panjang Bata (cm)</label>
+<input type="number" id="bataPanjang" min="5" max="40" step="0.1" value="20" />
 
-<label for="bataTebal">Tebal Adukan (cm)</label> <input type="number" id="bataTebal" min="1" max="10" step="0.1" value="7" />
+<label for="bataTinggi">Tinggi Bata (cm)</label>
+<input type="number" id="bataTinggi" min="3" max="15" step="0.1" value="5" />
 
-<hr/><label>Luas Dinding (meter)</label>
+<label for="bataTebal">Tebal Adukan (cm)</label>
+<input type="number" id="bataTebal" min="1" max="10" step="0.1" value="7" />
 
+<hr/>
+
+<label>Luas Dinding (meter)</label>
 <div class="flex-row">
   <div>
     <label for="dindingPanjang">Panjang (m)</label>
@@ -132,21 +143,36 @@
     <label for="dindingTinggi">Tinggi (m)</label>
     <input type="number" id="dindingTinggi" min="0.01" step="0.01" placeholder="Tinggi dinding" />
   </div>
-</div><label>Lubang Pintu/Jendela (meter)</label>
+</div>
 
-<div id="lobangContainer"></div>
-<button type="button" id="addLobang" class="btn-add">+ Tambah Lobang</button><div class="info">
+<label>Lubang Pintu/Jendela (meter)</label>
+<div id="lobangContainer">
+  <div class="lobang-group">
+    <label>Panjang</label>
+    <input type="number" class="lobangPanjang" min="0" step="0.01" placeholder="Panjang lobang" />
+    <label>Tinggi</label>
+    <input type="number" class="lobangTinggi" min="0" step="0.01" placeholder="Tinggi lobang" />
+    <button class="btn-remove" title="Hapus kolom" style="display:none;">×</button>
+  </div>
+</div>
+<button type="button" id="addLobang" class="btn-add">+ Tambah Lobang</button>
+
+<div class="info">
   * Note: Perbandingan adukan semen dan pasir adalah 1 : 4 (standar proyek).<br/>
   * Tebal adukan yang umum adalah 1-2 cm.<br/>
-  * 1 sak semen = 50 kg.<br/>
-  * 1 m³ pasir = 1 kubik pasir (sesuai input)<br/>
-</div><button id="btnReset">Reset Semua</button>
+  * 1 sak semen = 50 kg (~0.035 m³).<br/>
+  * 1 m³ pasir = 1 kubik pasir.
+</div>
+
+<button id="btnReset">Reset Semua</button>
 
 <div class="results" id="results" style="display:none;">
   <p>Kebutuhan Bata: <span id="jumlahBata"></span> pcs</p>
   <p>Kebutuhan Semen: <span id="jumlahSemen"></span> sak</p>
   <p>Kebutuhan Pasir: <span id="jumlahPasir"></span> m³</p>
-</div><script>
+</div>
+
+<script>
   function getTotalLobang() {
     const panjangs = document.querySelectorAll('.lobangPanjang');
     const tinggis = document.querySelectorAll('.lobangTinggi');
@@ -169,12 +195,12 @@
     const tinggiDinding = parseFloat(document.getElementById('dindingTinggi').value);
     const luasLobang = getTotalLobang();
 
-    if([panjangBata, tinggiBata, tebalAdukan, panjangDinding, tinggiDinding].some(v => isNaN(v))) {
+    if ([panjangBata, tinggiBata, tebalAdukan, panjangDinding, tinggiDinding].some(v => isNaN(v))) {
       document.getElementById('results').style.display = 'none';
       return;
     }
 
-    if(panjangDinding <= 0 || tinggiDinding <= 0) {
+    if (panjangDinding <= 0 || tinggiDinding <= 0) {
       document.getElementById('results').style.display = 'none';
       return;
     }
@@ -182,22 +208,19 @@
     const luasDinding = panjangDinding * tinggiDinding;
     const luasEfektif = Math.max(0, luasDinding - luasLobang);
 
-    const luasSatuanBataM2 = ((panjangBata + tebalAdukan)/100) * ((tinggiBata + tebalAdukan)/100);
-    const jumlahBata = Math.ceil(luasEfektif / luasSatuanBataM2);
+    const luasEfektifBata = ((panjangBata + tebalAdukan) / 100) * ((tinggiBata + tebalAdukan) / 100);
+    const jumlahBata = Math.ceil(luasEfektif / luasEfektifBata);
 
     const tebalM = tebalAdukan / 100;
-    const volumeDinding = luasEfektif * tebalM;
-    const volumeBata = jumlahBata * (panjangBata/100) * (tinggiBata/100) * tebalM;
-    let volumeAdukan = volumeDinding - volumeBata;
-    if(volumeAdukan < 0) volumeAdukan = 0;
+    const volumeAdukan = luasEfektif * tebalM;
 
     const volumeSemen = volumeAdukan / 5;
     const volumePasir = volumeAdukan * 4 / 5;
-    const beratSemen = volumeSemen * 1440;
-    const jumlahSakSemen = beratSemen / 50;
+
+    const jumlahSakSemen = Math.ceil(volumeSemen / 0.035);
 
     document.getElementById('jumlahBata').textContent = jumlahBata.toLocaleString();
-    document.getElementById('jumlahSemen').textContent = jumlahSakSemen.toFixed(2);
+    document.getElementById('jumlahSemen').textContent = jumlahSakSemen;
     document.getElementById('jumlahPasir').textContent = volumePasir.toFixed(3);
 
     document.getElementById('results').style.display = 'block';
@@ -208,26 +231,45 @@
     const div = document.createElement('div');
     div.className = 'lobang-group';
 
-    div.innerHTML = `
-      <label>Panjang</label>
-      <input type="number" class="lobangPanjang" min="0" step="0.01" placeholder="Panjang lobang" />
-      <label>Tinggi</label>
-      <input type="number" class="lobangTinggi" min="0" step="0.01" placeholder="Tinggi lobang" />
-      <button class="btn-remove" title="Hapus kolom">&times;</button>
-    `;
+    const labelP = document.createElement('label');
+    labelP.textContent = 'Panjang';
+    const inputP = document.createElement('input');
+    inputP.type = 'number';
+    inputP.className = 'lobangPanjang';
+    inputP.min = '0';
+    inputP.step = '0.01';
+    inputP.placeholder = 'Panjang lobang';
 
-    container.appendChild(div);
+    const labelT = document.createElement('label');
+    labelT.textContent = 'Tinggi';
+    const inputT = document.createElement('input');
+    inputT.type = 'number';
+    inputT.className = 'lobangTinggi';
+    inputT.min = '0';
+    inputT.step = '0.01';
+    inputT.placeholder = 'Tinggi lobang';
 
-    div.querySelector('.btn-remove').addEventListener('click', () => {
+    const btnRemove = document.createElement('button');
+    btnRemove.className = 'btn-remove';
+    btnRemove.title = 'Hapus kolom';
+    btnRemove.textContent = '×';
+    btnRemove.onclick = () => {
       container.removeChild(div);
       updateRemoveButtons();
       hitung();
-    });
+    };
 
-    div.querySelector('.lobangPanjang').addEventListener('input', hitung);
-    div.querySelector('.lobangTinggi').addEventListener('input', hitung);
+    div.appendChild(labelP);
+    div.appendChild(inputP);
+    div.appendChild(labelT);
+    div.appendChild(inputT);
+    div.appendChild(btnRemove);
+
+    container.appendChild(div);
 
     updateRemoveButtons();
+    inputP.addEventListener('input', hitung);
+    inputT.addEventListener('input', hitung);
   }
 
   function updateRemoveButtons() {
@@ -259,5 +301,7 @@
     document.getElementById('addLobang').addEventListener('click', tambahLobang);
     document.getElementById('btnReset').addEventListener('click', resetSemua);
   });
-</script></body>
+</script>
+
+</body>
 </html>
