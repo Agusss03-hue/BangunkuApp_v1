@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   const fiturList = {
     "Perhitungan Bahan": ["Hebel", "Bata Merah", "Keramik", "Atap"],
-    "Perhitungan RAB": ["Hitung RAB Kasar", "Hitung RAB Detail"]
+    "Perhitungan RAB": ["Tabel RAB", "Proyek Tersimpan"]
   };
 
   const pageMap = {
@@ -200,8 +200,8 @@ document.addEventListener('DOMContentLoaded', function () {
     "Bata Merah": "perhitungan_bahan_bata_merah.html",
     "Keramik": "perhitungan_keramik.html",
     "Atap": "perhitungan_atap.html",
-    "Hitung RAB Kasar": "perhitungan_rab_kasar.html",
-    "Hitung RAB Detail": "perhitungan_rab_detail.html"
+    "Tabel RAB": "perhitungan_rab_kasar.html",
+    "Proyek Tersimpan": "perhitungan_rab_detail.html"
   };
 
   menuUtama.addEventListener('click', (e) => {
@@ -221,10 +221,14 @@ document.addEventListener('DOMContentLoaded', function () {
       li.textContent = item;
       li.tabIndex = 0;
       li.onclick = () => {
-        if (pageMap[item]) {
-          window.location.href = pageMap[item];
+        if (fitur === "Perhitungan RAB") {
+          alert("⚠️ Fitur ini tersedia pada versi penuh aplikasi. Untuk akses lengkap, silakan upgrade ke versi premium di lynk.id/bangunku. Terima kasih atas dukungan Anda.");
         } else {
-          alert(`Halaman untuk '${item}' belum tersedia.`);
+          if (pageMap[item]) {
+            window.location.href = pageMap[item];
+          } else {
+            alert(`Halaman untuk '${item}' belum tersedia.`);
+          }
         }
       };
       li.onkeydown = (event) => {
